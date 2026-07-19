@@ -1,0 +1,1560 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+// varibales globales de opciones
+$botwriter_countries = [
+    'af' => 'Afghanistan',
+    'al' => 'Albania',
+    'dz' => 'Algeria',
+    'as' => 'American Samoa',
+    'ad' => 'Andorra',
+    'ao' => 'Angola',
+    'ai' => 'Anguilla',
+    'aq' => 'Antarctica',
+    'ag' => 'Antigua and Barbuda',
+    'ar' => 'Argentina',
+    'am' => 'Armenia',
+    'aw' => 'Aruba',
+    'au' => 'Australia',
+    'at' => 'Austria',
+    'az' => 'Azerbaijan',
+    'bs' => 'Bahamas',
+    'bh' => 'Bahrain',
+    'bd' => 'Bangladesh',
+    'bb' => 'Barbados',
+    'by' => 'Belarus',
+    'be' => 'Belgium',
+    'bz' => 'Belize',
+    'bj' => 'Benin',
+    'bm' => 'Bermuda',
+    'bt' => 'Bhutan',
+    'bo' => 'Bolivia',
+    'ba' => 'Bosnia and Herzegovina',
+    'bw' => 'Botswana',
+    'bv' => 'Bouvet Island',
+    'br' => 'Brazil',
+    'io' => 'British Indian Ocean Territory',
+    'bn' => 'Brunei Darussalam',
+    'bg' => 'Bulgaria',
+    'bf' => 'Burkina Faso',
+    'bi' => 'Burundi',
+    'kh' => 'Cambodia',
+    'cm' => 'Cameroon',
+    'ca' => 'Canada',
+    'cv' => 'Cape Verde',
+    'ky' => 'Cayman Islands',
+    'cf' => 'Central African Republic',
+    'td' => 'Chad',
+    'cl' => 'Chile',
+    'cn' => 'China',
+    'cx' => 'Christmas Island',
+    'cc' => 'Cocos (Keeling) Islands',
+    'co' => 'Colombia',
+    'km' => 'Comoros',
+    'cg' => 'Congo',
+    'cd' => 'Congo, the Democratic Republic of the',
+    'ck' => 'Cook Islands',
+    'cr' => 'Costa Rica',
+    'ci' => 'Cote Divoire',
+    'hr' => 'Croatia',
+    'cu' => 'Cuba',
+    'cy' => 'Cyprus',
+    'cz' => 'Czech Republic',
+    'dk' => 'Denmark',
+    'dj' => 'Djibouti',
+    'dm' => 'Dominica',
+    'do' => 'Dominican Republic',
+    'ec' => 'Ecuador',
+    'eg' => 'Egypt',
+    'sv' => 'El Salvador',
+    'gq' => 'Equatorial Guinea',
+    'er' => 'Eritrea',
+    'ee' => 'Estonia',
+    'et' => 'Ethiopia',
+    'fk' => 'Falkland Islands (Malvinas)',
+    'fo' => 'Faroe Islands',
+    'fj' => 'Fiji',
+    'fi' => 'Finland',
+    'fr' => 'France',
+    'gf' => 'French Guiana',
+    'pf' => 'French Polynesia',
+    'tf' => 'French Southern Territories',
+    'ga' => 'Gabon',
+    'gm' => 'Gambia',
+    'ge' => 'Georgia',
+    'de' => 'Germany',
+    'gh' => 'Ghana',
+    'gi' => 'Gibraltar',
+    'gr' => 'Greece',
+    'gl' => 'Greenland',
+    'gd' => 'Grenada',
+    'gp' => 'Guadeloupe',
+    'gu' => 'Guam',
+    'gt' => 'Guatemala',
+    'gn' => 'Guinea',
+    'gw' => 'Guinea-Bissau',
+    'gy' => 'Guyana',
+    'ht' => 'Haiti',
+    'hm' => 'Heard Island and Mcdonald Islands',
+    'va' => 'Holy See (Vatican City State)',
+    'hn' => 'Honduras',
+    'hk' => 'Hong Kong',
+    'hu' => 'Hungary',
+    'is' => 'Iceland',
+    'in' => 'India',
+    'id' => 'Indonesia',
+    'ir' => 'Iran, Islamic Republic of',
+    'iq' => 'Iraq',
+    'ie' => 'Ireland',
+    'il' => 'Israel',
+    'it' => 'Italy',
+    'jm' => 'Jamaica',
+    'jp' => 'Japan',
+    'jo' => 'Jordan',
+    'kz' => 'Kazakhstan',
+    'ke' => 'Kenya',
+    'ki' => 'Kiribati',
+    'kp' => 'North Korea',
+    'kr' => 'South Korea',
+    'kw' => 'Kuwait',
+    'kg' => 'Kyrgyzstan',
+    'la' => 'Lao Peoples Democratic Republic',
+    'lv' => 'Latvia',
+    'lb' => 'Lebanon',
+    'ls' => 'Lesotho',
+    'lr' => 'Liberia',
+    'ly' => 'Libya',
+    'li' => 'Liechtenstein',
+    'lt' => 'Lithuania',
+    'lu' => 'Luxembourg',
+    'mo' => 'Macao',
+    'mk' => 'North Macedonia',
+    'mg' => 'Madagascar',
+    'mw' => 'Malawi',
+    'my' => 'Malaysia',
+    'mv' => 'Maldives',
+    'ml' => 'Mali',
+    'mt' => 'Malta',
+    'mh' => 'Marshall Islands',
+    'mq' => 'Martinique',
+    'mr' => 'Mauritania',
+    'mu' => 'Mauritius',
+    'yt' => 'Mayotte',
+    'mx' => 'Mexico',
+    'fm' => 'Micronesia, Federated States of',
+    'md' => 'Moldova, Republic of',
+    'mc' => 'Monaco',
+    'mn' => 'Mongolia',
+    'ms' => 'Montserrat',
+    'ma' => 'Morocco',
+    'mz' => 'Mozambique',
+    'mm' => 'Myanmar',
+    'na' => 'Namibia',
+    'nr' => 'Nauru',
+    'np' => 'Nepal',
+    'nl' => 'Netherlands',
+    'nc' => 'New Caledonia',
+    'nz' => 'New Zealand',
+    'ni' => 'Nicaragua',
+    'ne' => 'Niger',
+    'ng' => 'Nigeria',
+    'nu' => 'Niue',
+    'nf' => 'Norfolk Island',
+    'mp' => 'Northern Mariana Islands',
+    'no' => 'Norway',
+    'om' => 'Oman',
+    'pk' => 'Pakistan',
+    'pw' => 'Palau',
+    'ps' => 'Palestinian Territory, Occupied',
+    'pa' => 'Panama',
+    'pg' => 'Papua New Guinea',
+    'py' => 'Paraguay',
+    'pe' => 'Peru',
+    'ph' => 'Philippines',
+    'pn' => 'Pitcairn',
+    'pl' => 'Poland',
+    'pt' => 'Portugal',
+    'pr' => 'Puerto Rico',
+    'qa' => 'Qatar',
+    're' => 'Reunion',
+    'ro' => 'Romania',
+    'ru' => 'Russian Federation',
+    'rw' => 'Rwanda',
+    'sh' => 'Saint Helena',
+    'kn' => 'Saint Kitts and Nevis',
+    'lc' => 'Saint Lucia',
+    'pm' => 'Saint Pierre and Miquelon',
+    'vc' => 'Saint Vincent and the Grenadines',
+    'ws' => 'Samoa',
+    'sm' => 'San Marino',
+    'st' => 'Sao Tome and Principe',
+    'sa' => 'Saudi Arabia',
+    'sn' => 'Senegal',
+    'rs' => 'Serbia and Montenegro',
+    'sc' => 'Seychelles',
+    'sl' => 'Sierra Leone',
+    'sg' => 'Singapore',
+    'sk' => 'Slovakia',
+    'si' => 'Slovenia',
+    'sb' => 'Solomon Islands',
+    'so' => 'Somalia',
+    'za' => 'South Africa',
+    'gs' => 'South Georgia and the South Sandwich Islands',
+    'es' => 'Spain',
+    'lk' => 'Sri Lanka',
+    'sd' => 'Sudan',
+    'sr' => 'Suriname',
+    'sj' => 'Svalbard and Jan Mayen',
+    'sz' => 'Swaziland',
+    'se' => 'Sweden',
+    'ch' => 'Switzerland',
+    'sy' => 'Syrian Arab Republic',
+    'tw' => 'Taiwan',
+    'tj' => 'Tajikistan',
+    'tz' => 'Tanzania, United Republic of',
+    'th' => 'Thailand',
+    'tl' => 'Timor-Leste',
+    'tg' => 'Togo',
+    'tk' => 'Tokelau',
+    'to' => 'Tonga',
+    'tt' => 'Trinidad and Tobago',
+    'tn' => 'Tunisia',
+    'tr' => 'Turkey',
+    'tm' => 'Turkmenistan',
+    'tc' => 'Turks and Caicos Islands',
+    'tv' => 'Tuvalu',
+    'ug' => 'Uganda',
+    'ua' => 'Ukraine',
+    'ae' => 'United Arab Emirates',
+    'uk' => 'United Kingdom',
+    'gb' => 'United Kingdom',
+    'us' => 'United States',
+    'um' => 'United States Minor Outlying Islands',
+    'uy' => 'Uruguay',
+    'uz' => 'Uzbekistan',
+    'vu' => 'Vanuatu',
+    've' => 'Venezuela',
+    'vn' => 'Viet Nam',
+    'vg' => 'Virgin Islands, British',
+    'vi' => 'Virgin Islands, U.S.',
+    'wf' => 'Wallis and Futuna',
+    'eh' => 'Western Sahara',
+    'ye' => 'Yemen',
+    'zm' => 'Zambia',
+    'zw' => 'Zimbabwe',
+    'gg' => 'Guernsey',
+    'je' => 'Jersey',
+    'im' => 'Isle of Man',
+    'me' => 'Montenegro',
+];
+       
+$botwriter_languages = [
+            'any' => 'Any Language',
+            'af' => 'Afrikaans',
+            'sq' => 'Albanian',
+            'am' => 'Amharic',
+            'ar' => 'Arabic',
+            'hy' => 'Armenian',
+            'az' => 'Azerbaijani',
+            'eu' => 'Basque',
+            'be' => 'Belarusian',
+            'bn' => 'Bengali',
+            'bs' => 'Bosnian',
+            'bg' => 'Bulgarian',
+            'ca' => 'Catalan',
+            'ceb' => 'Cebuano',
+            'ny' => 'Chichewa',
+            'zh-CN' => 'Chinese',
+            'co' => 'Corsican',
+            'hr' => 'Croatian',
+            'cs' => 'Czech',
+            'da' => 'Danish',
+            'nl' => 'Dutch',
+            'en' => 'English',
+            'eo' => 'Esperanto',
+            'et' => 'Estonian',
+            'tl' => 'Filipino',
+            'fi' => 'Finnish',
+            'fr' => 'French',
+            'fy' => 'Frisian',
+            'gl' => 'Galician',
+            'ka' => 'Georgian',
+            'de' => 'German',
+            'el' => 'Greek',
+            'gu' => 'Gujarati',
+            'ht' => 'Haitian Creole',
+            'ha' => 'Hausa',
+            'haw' => 'Hawaiian',
+            'iw' => 'Hebrew',
+            'hi' => 'Hindi',
+            'hmn' => 'Hmong',
+            'hu' => 'Hungarian',
+            'is' => 'Icelandic',
+            'ig' => 'Igbo',
+            'id' => 'Indonesian',
+            'ga' => 'Irish',
+            'it' => 'Italian',
+            'ja' => 'Japanese',
+            'jw' => 'Javanese',
+            'kn' => 'Kannada',
+            'kk' => 'Kazakh',
+            'km' => 'Khmer',
+            'ko' => 'Korean',
+            'ku' => 'Kurdish (Kurmanji)',
+            'ky' => 'Kyrgyz',
+            'lo' => 'Lao',
+            'la' => 'Latin',
+            'lv' => 'Latvian',
+            'lt' => 'Lithuanian',
+            'lb' => 'Luxembourgish',
+            'mk' => 'Macedonian',
+            'mg' => 'Malagasy',
+            'ms' => 'Malay',
+            'ml' => 'Malayalam',
+            'mt' => 'Maltese',
+            'mi' => 'Maori',
+            'mr' => 'Marathi',
+            'mn' => 'Mongolian',
+            'my' => 'Myanmar (Burmese)',
+            'ne' => 'Nepali',
+            'no' => 'Norwegian',
+            'ps' => 'Pashto',
+            'fa' => 'Persian',
+            'pl' => 'Polish',
+            'pt' => 'Portuguese',
+            'pa' => 'Punjabi',
+            'ro' => 'Romanian',
+            'ru' => 'Russian',
+            'sm' => 'Samoan',
+            'gd' => 'Scots Gaelic',
+            'sr' => 'Serbian',
+            'st' => 'Sesotho',
+            'sn' => 'Shona',
+            'sd' => 'Sindhi',
+            'si' => 'Sinhala',
+            'sk' => 'Slovak',
+            'sl' => 'Slovenian',
+            'so' => 'Somali',
+            'es' => 'Spanish',
+            'su' => 'Sundanese',
+            'sw' => 'Swahili',
+            'sv' => 'Swedish',
+            'tg' => 'Tajik',
+            'ta' => 'Tamil',
+            'te' => 'Telugu',
+            'th' => 'Thai',
+            'tr' => 'Turkish',
+            'uk' => 'Ukrainian',
+            'ur' => 'Urdu',
+            'uz' => 'Uzbek',
+            'vi' => 'Vietnamese',
+            'cy' => 'Welsh',
+            'xh' => 'Xhosa',
+            'yi' => 'Yiddish',
+            'yo' => 'Yoruba',
+            'zu' => 'Zulu',
+        ];
+
+/**
+ * Get list of available text AI providers
+ */
+function botwriter_get_text_providers() {
+    return [
+        'openai' => 'OpenAI (GPT-4o, GPT-4.1)',
+        'anthropic' => 'Anthropic (Claude)',
+        'google' => 'Google (Gemini)',
+        'mistral' => 'Mistral AI',
+        'groq' => 'Groq (Llama, Mixtral)',
+        'openrouter' => 'OpenRouter (Multiple)',
+    ];
+}
+
+/**
+ * Get list of available image AI providers
+ */
+function botwriter_get_image_providers() {
+    return [
+        'dalle' => 'DALL-E (OpenAI)',
+        'gemini' => 'Google Gemini',
+        'fal' => 'Fal.ai (Flux)',
+        'replicate' => 'Replicate',
+        'stability' => 'Stability AI',
+        'cloudflare' => 'Cloudflare AI',
+    ];
+}
+
+/**
+ * Get the current text model based on selected provider
+ */
+function botwriter_get_current_text_model() {
+    $provider = get_option('botwriter_text_provider', 'openai');
+    $defaults = [
+        'openai' => 'gpt-5.4-mini',
+        'anthropic' => 'claude-sonnet-4-6',
+        'google' => 'gemini-2.5-flash',
+        'mistral' => 'mistral-large-latest',
+        'groq' => 'llama-3.3-70b-versatile',
+        'openrouter' => 'anthropic/claude-sonnet-4.6',
+    ];
+    return get_option("botwriter_{$provider}_model", $defaults[$provider] ?? 'gpt-5.4-mini');
+}
+
+/**
+ * Get the current image model based on selected provider
+ */
+function botwriter_get_current_image_model() {
+    $provider = (string) get_option('botwriter_image_provider', 'stockphoto');
+
+    if (function_exists('botwriter_get_current_image_model_by_provider')) {
+        return (string) botwriter_get_current_image_model_by_provider($provider);
+    }
+
+    $default = function_exists('botwriter_get_provider_default_image_model')
+        ? (string) botwriter_get_provider_default_image_model($provider)
+        : 'gpt-image-1';
+    if ($default === '') {
+        $default = 'gpt-image-1';
+    }
+
+    $option_name = function_exists('botwriter_get_image_model_option_name')
+        ? botwriter_get_image_model_option_name($provider)
+        : ($provider === 'gemini' ? 'botwriter_gemini_image_model' : "botwriter_{$provider}_model");
+
+    return (string) get_option($option_name, $default);
+}
+
+/**
+ * Get the API key for a specific provider
+ */
+function botwriter_get_provider_api_key($provider) {
+    $key = get_option("botwriter_{$provider}_api_key", '');
+    if (!empty($key)) {
+        return botwriter_decrypt_api_key($key);
+    }
+    return '';
+}
+
+/**
+ * Count active BotWriter tasks (status = 1).
+ *
+ * @return int
+ */
+function botwriter_get_enabled_tasks_count() {
+    static $enabled_tasks_count = null;
+
+    if ($enabled_tasks_count !== null) {
+        return $enabled_tasks_count;
+    }
+
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'botwriter_tasks';
+
+    $table_exists = $wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $table_name));
+    if ($table_exists !== $table_name) {
+        $enabled_tasks_count = 0;
+        return $enabled_tasks_count;
+    }
+
+    $enabled_tasks_count = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$table_name} WHERE status = 1");
+    return $enabled_tasks_count;
+}
+
+/**
+ * Whether we should warn that WP-Cron is disabled while BotWriter has active tasks.
+ *
+ * @return bool
+ */
+function botwriter_should_show_wp_cron_disabled_warning() {
+    $wp_cron_disabled = defined('DISABLE_WP_CRON') ? (bool) constant('DISABLE_WP_CRON') : false;
+    if (!$wp_cron_disabled) {
+        return false;
+    }
+
+    if (get_option('botwriter_cron_active', '1') !== '1') {
+        return false;
+    }
+
+    return botwriter_get_enabled_tasks_count() > 0;
+}
+
+
+/**
+ * SEO Slug Translation
+ * 
+ * Translates post title, tags and image filename into SEO-friendly
+ * slugs in the target language using the configured AI text provider.
+ * 
+ * @param string $title     The post title to translate
+ * @param string $tags      Comma-separated tags (optional)
+ * @param string $language  Target language code (e.g., 'en')
+ * @return array|false  Array with 'post_slug', 'tag_slugs', 'image_slug' or false on failure
+ */
+function botwriter_translate_slugs($title, $tags = '', $language = 'en') {
+    // Check if translation is enabled
+    if (get_option('botwriter_seo_translation_enabled', '0') !== '1') {
+        return false;
+    }
+
+    $translate_title = get_option('botwriter_seo_translate_title', '1') === '1';
+    $translate_tags  = get_option('botwriter_seo_translate_tags', '1') === '1';
+    $translate_image = get_option('botwriter_seo_translate_image', '1') === '1';
+    $target_lang     = get_option('botwriter_seo_target_language', 'en');
+
+    // Nothing to translate
+    if (!$translate_title && !$translate_tags && !$translate_image) {
+        return false;
+    }
+
+    // Build the prompt
+    $items = array();
+    if ($translate_title || $translate_image) {
+        $items[] = 'Title: ' . $title;
+    }
+    if ($translate_tags && !empty($tags)) {
+        $items[] = 'Tags: ' . $tags;
+    }
+
+    $language_names = array(
+        'en' => 'English', 'es' => 'Spanish', 'fr' => 'French', 'de' => 'German',
+        'it' => 'Italian', 'pt' => 'Portuguese', 'nl' => 'Dutch', 'ru' => 'Russian',
+        'ja' => 'Japanese', 'ko' => 'Korean', 'zh' => 'Chinese', 'ar' => 'Arabic',
+        'hi' => 'Hindi', 'tr' => 'Turkish', 'pl' => 'Polish', 'sv' => 'Swedish',
+        'da' => 'Danish', 'no' => 'Norwegian', 'fi' => 'Finnish', 'cs' => 'Czech',
+        'ro' => 'Romanian', 'hu' => 'Hungarian', 'el' => 'Greek', 'th' => 'Thai',
+        'vi' => 'Vietnamese', 'id' => 'Indonesian', 'ms' => 'Malay', 'uk' => 'Ukrainian',
+    );
+    $lang_name = $language_names[$target_lang] ?? 'English';
+
+    $prompt  = "You are a translator. Your task is to TRANSLATE the following text into {$lang_name} and then convert it into URL-friendly slugs.\n";
+    $prompt .= "IMPORTANT: You MUST translate the meaning into {$lang_name} first, then format as a slug. Do NOT just remove accents or spaces from the original language.\n";
+    $prompt .= "Example: if the input is in Spanish 'Receta de Paella Valenciana' and target is English, the slug must be 'valencian-paella-recipe', NOT 'receta-de-paella-valenciana'.\n";
+    $prompt .= "Rules: lowercase, hyphens instead of spaces, no special characters, no accents, max 6 words per slug.\n\n";
+    $prompt .= implode("\n", $items) . "\n\n";
+    $prompt .= "Respond ONLY with valid JSON, no explanation, no markdown:\n";
+    $prompt .= '{"post_slug": "translated-title-slug", "tag_slugs": ["tag-one", "tag-two"], "image_slug": "image-filename-slug"}';
+
+    // Determine which provider to use
+    $provider = get_option('botwriter_text_provider', 'openai');
+
+    $api_key = botwriter_get_provider_api_key($provider);
+    if (empty($api_key)) {
+        botwriter_log('SEO Translation: No API key for provider ' . $provider, [], 'warning');
+        return false;
+    }
+
+    // Use a fast/cheap model for translations
+    $model = botwriter_get_seo_translation_model($provider);
+
+    // Route through Cloudflare Worker (no usage count)
+    $text = botwriter_call_worker_nocount($provider, $api_key, $model, $prompt, 5000, 0.3);
+
+    if (is_wp_error($text)) {
+        botwriter_log('SEO Translation API error', ['provider' => $provider, 'error' => $text->get_error_message()], 'error');
+        return false;
+    }
+
+    // Parse JSON from response
+    $result = botwriter_parse_slug_json($text);
+    if ($result === false) {
+        botwriter_log('SEO Translation: Failed to parse JSON', ['provider' => $provider, 'raw' => substr($text, 0, 500)], 'error');
+        return false;
+    }
+
+    botwriter_log('SEO Translation success', [
+        'provider' => $provider,
+        'post_slug' => $result['post_slug'] ?? '',
+        'tag_count' => count($result['tag_slugs'] ?? []),
+    ]);
+
+    return $result;
+}
+
+/**
+ * Get the fastest/cheapest model for SEO translation based on provider
+ */
+function botwriter_get_seo_translation_model($provider) {
+    $fast_models = array(
+        'openai'     => 'gpt-4o-mini',
+        'anthropic'  => 'claude-haiku-4-20250414',
+        'google'     => 'gemini-2.5-flash',
+        'mistral'    => 'mistral-small-latest',
+        'groq'       => 'llama-3.3-70b-versatile',
+        'openrouter' => 'google/gemini-2.0-flash-001',
+    );
+    return $fast_models[$provider] ?? 'gpt-4o-mini';
+}
+
+/**
+ * Call the Cloudflare Worker /woo endpoint without counting usage.
+ *
+ * Used by SEO slug translation and meta description generation to
+ * leverage the Worker's provider abstraction (handles max_tokens vs
+ * max_completion_tokens, Responses API, etc.) while keeping quota
+ * reserved for actual WooCommerce / post generation operations.
+ *
+ * @param string $provider   Provider key (openai, anthropic, google, etc.).
+ * @param string $api_key    The user's API key for this provider.
+ * @param string $model      Model name to use.
+ * @param string $prompt     The prompt text.
+ * @param int    $max_tokens Maximum output tokens.
+ * @param float  $temperature Sampling temperature.
+ * @return string|WP_Error   Generated text content on success.
+ */
+function botwriter_call_worker_nocount( $provider, $api_key, $model, $prompt, $max_tokens = 200, $temperature = 0.3 ) {
+    $ssl_verify = get_option( 'botwriter_sslverify', 'yes' ) === 'yes';
+
+    // Map provider names: PHP uses 'google', Worker uses 'gemini'
+    $provider_map   = array( 'google' => 'gemini' );
+    $worker_provider = isset( $provider_map[ $provider ] ) ? $provider_map[ $provider ] : $provider;
+
+    // Map provider key → Worker body field
+    $key_field_map = array(
+        'openai'     => 'openai_api_key',
+        'anthropic'  => 'anthropic_api_key',
+        'google'     => 'google_api_key',
+        'mistral'    => 'mistral_api_key',
+        'groq'       => 'groq_api_key',
+        'openrouter' => 'openrouter_api_key',
+    );
+
+    $domain = preg_replace( '#^https?://#', '', home_url() );
+    $domain = rtrim( $domain, '/' );
+
+    $payload = array(
+        'prompt'         => $prompt,
+        'domain'         => $domain,
+        'provider'       => $worker_provider,
+        'model'          => $model,
+        'max_tokens'     => $max_tokens,
+        'temperature'    => $temperature,
+        'no_count'       => true,
+        'site_token'     => get_option( 'botwriter_site_token', '' ),
+    );
+
+    if ( ! empty( $api_key ) && isset( $key_field_map[ $provider ] ) ) {
+        $payload[ $key_field_map[ $provider ] ] = $api_key;
+    }
+
+    $response = wp_remote_post( BOTWRITER_API_URL . 'woo', array(
+        'timeout'   => 30,
+        'sslverify' => $ssl_verify,
+        'headers'   => array( 'Content-Type' => 'application/json' ),
+        'body'      => wp_json_encode( $payload ),
+    ) );
+
+    if ( is_wp_error( $response ) ) {
+        return $response;
+    }
+
+    $http_code = wp_remote_retrieve_response_code( $response );
+    $body      = wp_remote_retrieve_body( $response );
+    $data      = json_decode( $body, true );
+
+    if ( $http_code !== 200 || ( isset( $data['status'] ) && $data['status'] === 'error' ) ) {
+        $msg = $data['error'] ?? "HTTP {$http_code}";
+        return new WP_Error( 'worker_error', $msg );
+    }
+
+    $content = $data['content'] ?? '';
+    if ( empty( $content ) ) {
+        return new WP_Error( 'empty_response', 'AI returned an empty response.' );
+    }
+
+    return $content;
+}
+
+/**
+ * Extract the text content from provider-specific response formats
+ */
+function botwriter_extract_translation_text($provider, $body) {
+    $decoded = json_decode($body, true);
+    if (json_last_error() !== JSON_ERROR_NONE) { return ''; }
+
+    switch ($provider) {
+        case 'anthropic':
+            return $decoded['content'][0]['text'] ?? '';
+        case 'google':
+            return $decoded['candidates'][0]['content']['parts'][0]['text'] ?? '';
+        default: // openai, mistral, groq, openrouter — all OpenAI-compatible
+            return $decoded['choices'][0]['message']['content'] ?? '';
+    }
+}
+
+/**
+ * Parse the JSON slug response from AI, with fallback for markdown-wrapped JSON
+ */
+function botwriter_parse_slug_json($text) {
+    // Strip markdown code fences if present
+    $text = trim($text);
+    $text = preg_replace('/^```(?:json)?\s*/i', '', $text);
+    $text = preg_replace('/\s*```$/', '', $text);
+    $text = trim($text);
+
+    $data = json_decode($text, true);
+    if (json_last_error() !== JSON_ERROR_NONE || !is_array($data)) {
+        return false;
+    }
+
+    // Sanitize slugs
+    $result = array(
+        'post_slug'  => isset($data['post_slug']) ? sanitize_title($data['post_slug']) : '',
+        'tag_slugs'  => array(),
+        'image_slug' => isset($data['image_slug']) ? sanitize_file_name($data['image_slug']) : '',
+    );
+
+    if (isset($data['tag_slugs']) && is_array($data['tag_slugs'])) {
+        foreach ($data['tag_slugs'] as $tag_slug) {
+            $result['tag_slugs'][] = sanitize_title($tag_slug);
+        }
+    }
+
+    return $result;
+}
+
+/**
+ * Apply translated slugs to a post after it has been created
+ *
+ * @param int    $post_id     The post ID
+ * @param string $title       Original post title
+ * @param string $tags_string Comma-separated tags
+ */
+function botwriter_apply_translated_slugs($post_id, $title, $tags_string = '') {
+    if (!$post_id || get_option('botwriter_seo_translation_enabled', '0') !== '1') {
+        return;
+    }
+
+    $slugs = botwriter_translate_slugs($title, $tags_string);
+    if ($slugs === false) {
+        return;
+    }
+
+    $translate_title = get_option('botwriter_seo_translate_title', '1') === '1';
+    $translate_tags  = get_option('botwriter_seo_translate_tags', '1') === '1';
+
+    // Apply post slug
+    if ($translate_title && !empty($slugs['post_slug'])) {
+        wp_update_post(array(
+            'ID' => $post_id,
+            'post_name' => wp_unique_post_slug(
+                $slugs['post_slug'],
+                $post_id,
+                get_post_status($post_id),
+                get_post_type($post_id),
+                wp_get_post_parent_id($post_id)
+            ),
+        ));
+    }
+
+    // Apply tag slugs — match by original tag order, not alphabetical wp_get_post_tags order
+    if ($translate_tags && !empty($slugs['tag_slugs']) && !empty($tags_string)) {
+        $original_tags = array_map('trim', explode(',', $tags_string));
+        $tag_slug_map  = $slugs['tag_slugs'];
+
+        botwriter_log('SEO Translation: Applying tag slugs', [
+            'post_id'       => $post_id,
+            'original_tags' => $original_tags,
+            'tag_slugs'     => $tag_slug_map,
+        ]);
+
+        foreach ($original_tags as $index => $tag_name) {
+            if (!isset($tag_slug_map[$index]) || empty($tag_slug_map[$index])) {
+                continue;
+            }
+            // Find the term by its name (the original tag text)
+            $term = get_term_by('name', $tag_name, 'post_tag');
+            if (!$term) {
+                // Also try by slug WordPress auto-generated
+                $term = get_term_by('slug', sanitize_title($tag_name), 'post_tag');
+            }
+            if ($term && !is_wp_error($term)) {
+                $result = wp_update_term($term->term_id, 'post_tag', array(
+                    'slug' => $tag_slug_map[$index],
+                ));
+                if (is_wp_error($result)) {
+                    botwriter_log('SEO Translation: Failed to update tag slug', [
+                        'tag_name' => $tag_name,
+                        'term_id'  => $term->term_id,
+                        'error'    => $result->get_error_message(),
+                    ], 'warning');
+                }
+            } else {
+                botwriter_log('SEO Translation: Tag term not found', [
+                    'tag_name' => $tag_name,
+                    'post_id'  => $post_id,
+                ], 'warning');
+            }
+        }
+    }
+
+    // Return image slug for use during image attachment
+    return $slugs['image_slug'] ?? '';
+}
+
+
+/**
+ * Fetch and parse an RSS/Atom feed from the client side using wp_remote_get.
+ *
+ * Inspired by the server-side leerRSSFuente() in api_rss.php.
+ *
+ * @param string $rss_url         The RSS feed URL.
+ * @param string $published_links Comma-separated list of already-published links.
+ * @return array {
+ *     @type bool   $success        Whether a new article was found.
+ *     @type string $error          Error message (only when success is false).
+ *     @type string $source_title   Title of the selected article.
+ *     @type string $source_content Description/content of the selected article.
+ *     @type string $link_original  Permalink of the selected article.
+ * }
+ */
+function botwriter_fetch_rss_content( $rss_url, $published_links = '' ) {
+
+    // Validate URL
+    if ( empty( $rss_url ) ) {
+        return [ 'success' => false, 'error' => 'RSS source URL is empty or not configured.' ];
+    }
+    $rss_url = filter_var( $rss_url, FILTER_SANITIZE_URL );
+    if ( ! filter_var( $rss_url, FILTER_VALIDATE_URL ) ) {
+        return [ 'success' => false, 'error' => 'Invalid RSS feed URL.' ];
+    }
+
+    $ssl_verify = get_option( 'botwriter_sslverify', 'yes' );
+
+    botwriter_log( 'Client RSS fetch', [ 'url' => $rss_url ] );
+
+    // Fetch the feed
+    $response = wp_remote_get( $rss_url, [
+        'timeout'    => 30,
+        'sslverify'  => ( $ssl_verify !== 'no' ),
+        'user-agent' => 'BotWriter/' . BOTWRITER_VERSION . ' WordPress Plugin',
+    ] );
+
+    if ( is_wp_error( $response ) ) {
+        return [ 'success' => false, 'error' => 'Failed to fetch RSS feed: ' . $response->get_error_message() ];
+    }
+
+    $http_code = wp_remote_retrieve_response_code( $response );
+    if ( $http_code !== 200 ) {
+        return [ 'success' => false, 'error' => "RSS feed returned HTTP {$http_code}" ];
+    }
+
+    $body = wp_remote_retrieve_body( $response );
+
+    // Parse XML
+    libxml_use_internal_errors( true );
+    try {
+        $xml = new SimpleXMLElement( $body, LIBXML_NOCDATA );
+    } catch ( Exception $e ) {
+        return [ 'success' => false, 'error' => 'Error parsing RSS feed: ' . $e->getMessage() ];
+    }
+
+    // Build items array (Atom or RSS)
+    $items = [];
+
+    if ( isset( $xml->entry ) ) {
+        // Atom format
+        foreach ( $xml->entry as $entry ) {
+            $link = '';
+            if ( isset( $entry->link['href'] ) ) {
+                $link = (string) $entry->link['href'];
+            } else {
+                foreach ( $entry->link as $l ) {
+                    if ( (string) $l['rel'] === 'alternate' || empty( (string) $l['rel'] ) ) {
+                        $link = (string) $l['href'];
+                        break;
+                    }
+                }
+            }
+            $items[] = [
+                'title'       => wp_strip_all_tags( (string) $entry->title ),
+                'link'        => $link,
+                'description' => wp_strip_all_tags( (string) ( $entry->summary ?? $entry->content ?? '' ) ),
+                'content'     => wp_strip_all_tags( (string) ( $entry->content ?? $entry->summary ?? '' ) ),
+                'date'        => (string) ( $entry->updated ?? $entry->published ?? '' ),
+            ];
+        }
+    } else {
+        // Standard RSS
+        $channel = $xml->channel ?? $xml;
+        if ( isset( $channel->item ) ) {
+            foreach ( $channel->item as $item ) {
+                $content = '';
+                $namespaces = $item->getNamespaces( true );
+                if ( isset( $namespaces['content'] ) ) {
+                    $content_ns = $item->children( $namespaces['content'] );
+                    if ( isset( $content_ns->encoded ) ) {
+                        $content = wp_strip_all_tags( (string) $content_ns->encoded );
+                    }
+                }
+                $description = wp_strip_all_tags( (string) $item->description );
+
+                $items[] = [
+                    'title'       => wp_strip_all_tags( (string) $item->title ),
+                    'link'        => (string) $item->link,
+                    'description' => $description,
+                    'content'     => ! empty( $content ) ? $content : $description,
+                    'date'        => (string) ( $item->pubDate ?? '' ),
+                ];
+            }
+        }
+    }
+
+    if ( empty( $items ) ) {
+        return [ 'success' => false, 'error' => 'No items found in RSS feed or failed to parse.' ];
+    }
+
+    // Find first article not already published
+    $published_array = array_filter( array_map( 'trim', explode( ',', $published_links ) ) );
+
+    $dedup_skipped = array();
+    foreach ( $items as $article ) {
+        if ( in_array( $article['link'], $published_array, true ) ) {
+            continue;
+        }
+
+        // Cross-task duplicate detection (URL / title / content similarity).
+        if ( function_exists( 'botwriter_dedup_is_duplicate' ) ) {
+            $dedup = botwriter_dedup_is_duplicate( array(
+                'url'     => $article['link'],
+                'title'   => $article['title'],
+                'content' => ! empty( $article['content'] ) ? $article['content'] : $article['description'],
+            ) );
+            if ( ! empty( $dedup['is_duplicate'] ) && $dedup['action'] === 'skip' ) {
+                $dedup_skipped[] = array(
+                    'title'  => $article['title'],
+                    'link'   => $article['link'],
+                    'reason' => $dedup['reason'],
+                    'score'  => $dedup['score'],
+                );
+                continue;
+            }
+            if ( ! empty( $dedup['is_duplicate'] ) ) {
+                botwriter_log( 'Client RSS dedup match (log_only)', array(
+                    'title'  => $article['title'],
+                    'link'   => $article['link'],
+                    'reason' => $dedup['reason'],
+                    'score'  => $dedup['score'],
+                ) );
+            }
+        }
+
+        botwriter_log( 'Client RSS article selected', array(
+            'title' => $article['title'],
+            'link'  => $article['link'],
+        ) );
+        return array(
+            'success'        => true,
+            'source_title'   => $article['title'],
+            'source_content' => ! empty( $article['content'] ) ? $article['content'] : $article['description'],
+            'link_original'  => $article['link'],
+        );
+    }
+
+    if ( ! empty( $dedup_skipped ) ) {
+        botwriter_log( 'Client RSS no article selected — all candidates flagged as duplicates', array(
+            'skipped_count' => count( $dedup_skipped ),
+            'first_skipped' => $dedup_skipped[0],
+        ) );
+        return array( 'success' => false, 'error' => 'No new articles found in RSS feed. All candidates were too similar to recently published posts.' );
+    }
+
+    return array( 'success' => false, 'error' => 'No new articles found in RSS feed. All articles have already been published.' );
+}
+
+
+/**
+ * Fetch a single unpublished article from a remote WordPress site via its REST API.
+ *
+ * Mirrors the logic previously handled server-side in getWebsitePosts.php.
+ * Uses wp_remote_get to call /wp-json/wp/v2/posts on the target domain,
+ * then picks the first post whose link is not in $published_links.
+ *
+ * @param string $domain_name     URL of the remote WordPress site.
+ * @param string $category_ids    Comma-separated list of category IDs.
+ * @param string $published_links Comma-separated list of already-published links.
+ * @return array {
+ *     @type bool   $success        Whether an article was found.
+ *     @type string $error          Error message (when success is false).
+ *     @type string $source_title   Title of the selected article.
+ *     @type string $source_content Content of the selected article (HTML stripped).
+ *     @type string $link_original  Permalink of the selected article.
+ * }
+ */
+function botwriter_fetch_wordpress_content( $domain_name, $category_ids, $published_links = '' ) {
+
+    if ( empty( $domain_name ) ) {
+        return [ 'success' => false, 'error' => 'WordPress domain name is empty or not configured.' ];
+    }
+
+    if ( empty( $category_ids ) ) {
+        return [ 'success' => false, 'error' => 'WordPress category IDs are not configured.' ];
+    }
+
+    // Ensure the domain has a scheme
+    if ( ! preg_match( '#^https?://#i', $domain_name ) ) {
+        $domain_name = 'https://' . ltrim( $domain_name, '/' );
+    }
+    $domain_name = filter_var( $domain_name, FILTER_SANITIZE_URL );
+    if ( ! filter_var( $domain_name, FILTER_VALIDATE_URL ) ) {
+        return [ 'success' => false, 'error' => 'Invalid WordPress domain: ' . $domain_name ];
+    }
+
+    // Sanitise category IDs (only digits and commas)
+    $category_ids = preg_replace( '/[^0-9,]/', '', $category_ids );
+    if ( empty( $category_ids ) ) {
+        return [ 'success' => false, 'error' => 'Invalid category IDs.' ];
+    }
+
+    // Build REST API URL
+    $api_url = rtrim( $domain_name, '/' ) . '/wp-json/wp/v2/posts';
+    $api_url .= '?categories=' . urlencode( $category_ids );
+    $api_url .= '&per_page=15';
+
+    $ssl_verify = get_option( 'botwriter_sslverify', 'yes' );
+
+    botwriter_log( 'Client WordPress fetch', [ 'url' => $api_url ] );
+
+    $response = wp_remote_get( $api_url, [
+        'timeout'    => 30,
+        'sslverify'  => ( $ssl_verify !== 'no' ),
+        'user-agent' => 'BotWriter/' . BOTWRITER_VERSION . ' WordPress Plugin',
+    ] );
+
+    if ( is_wp_error( $response ) ) {
+        return [ 'success' => false, 'error' => 'Failed to connect to WordPress site: ' . $response->get_error_message() ];
+    }
+
+    $http_code = wp_remote_retrieve_response_code( $response );
+    if ( $http_code !== 200 ) {
+        return [ 'success' => false, 'error' => "WordPress REST API returned HTTP {$http_code}. Make sure the site has REST API enabled." ];
+    }
+
+    $body  = wp_remote_retrieve_body( $response );
+    $posts = json_decode( $body, true );
+
+    if ( ! is_array( $posts ) || empty( $posts ) ) {
+        return [ 'success' => false, 'error' => 'No posts found in WordPress site or failed to parse response.' ];
+    }
+
+    // Find first unpublished post
+    $published_array = array_filter( array_map( 'trim', explode( ',', $published_links ) ) );
+
+    $dedup_skipped = array();
+    foreach ( $posts as $post ) {
+        $post_link = $post['link'] ?? '';
+
+        if ( in_array( $post_link, $published_array, true ) ) {
+            continue;
+        }
+
+        $title        = wp_strip_all_tags( html_entity_decode( $post['title']['rendered'] ?? '' ) );
+        $post_content = wp_strip_all_tags( html_entity_decode( $post['content']['rendered'] ?? '' ) );
+
+        // Cross-task duplicate detection.
+        if ( function_exists( 'botwriter_dedup_is_duplicate' ) ) {
+            $dedup = botwriter_dedup_is_duplicate( array(
+                'url'     => $post_link,
+                'title'   => $title,
+                'content' => $post_content,
+            ) );
+            if ( ! empty( $dedup['is_duplicate'] ) && $dedup['action'] === 'skip' ) {
+                $dedup_skipped[] = array(
+                    'title'  => $title,
+                    'link'   => $post_link,
+                    'reason' => $dedup['reason'],
+                    'score'  => $dedup['score'],
+                );
+                continue;
+            }
+            if ( ! empty( $dedup['is_duplicate'] ) ) {
+                botwriter_log( 'Client WordPress dedup match (log_only)', array(
+                    'title'  => $title,
+                    'link'   => $post_link,
+                    'reason' => $dedup['reason'],
+                    'score'  => $dedup['score'],
+                ) );
+            }
+        }
+
+        botwriter_log( 'Client WordPress article selected', array(
+            'title' => $title,
+            'link'  => $post_link,
+        ) );
+
+        return array(
+            'success'        => true,
+            'source_title'   => $title,
+            'source_content' => $post_content,
+            'link_original'  => $post_link,
+        );
+    }
+
+    if ( ! empty( $dedup_skipped ) ) {
+        botwriter_log( 'Client WordPress no article selected — all candidates flagged as duplicates', array(
+            'skipped_count' => count( $dedup_skipped ),
+            'first_skipped' => $dedup_skipped[0],
+        ) );
+        return array( 'success' => false, 'error' => 'No new posts found in WordPress site. All candidates were too similar to recently published posts.' );
+    }
+
+    return array( 'success' => false, 'error' => 'No new posts found in WordPress site. All posts have already been published.' );
+}
+
+
+/**
+ * Fetch categories from a remote WordPress site via its REST API.
+ *
+ * Mirrors the logic previously handled server-side in getWebsiteCategories.php.
+ *
+ * @param string $domain_name URL of the remote WordPress site.
+ * @return array {
+ *     @type bool   $success    Whether categories were retrieved.
+ *     @type string $error      Error message (when success is false).
+ *     @type array  $categories Array of [ id, name, slug ] objects.
+ * }
+ */
+function botwriter_fetch_wordpress_categories( $domain_name ) {
+
+    if ( empty( $domain_name ) ) {
+        return [ 'success' => false, 'error' => 'WordPress domain name is empty.' ];
+    }
+
+    // Ensure the domain has a scheme
+    if ( ! preg_match( '#^https?://#i', $domain_name ) ) {
+        $domain_name = 'https://' . ltrim( $domain_name, '/' );
+    }
+    $domain_name = filter_var( $domain_name, FILTER_SANITIZE_URL );
+    if ( ! filter_var( $domain_name, FILTER_VALIDATE_URL ) ) {
+        return [ 'success' => false, 'error' => 'Invalid WordPress domain: ' . $domain_name ];
+    }
+
+    $api_url    = rtrim( $domain_name, '/' ) . '/wp-json/wp/v2/categories';
+    $ssl_verify = get_option( 'botwriter_sslverify', 'yes' );
+
+    $response = wp_remote_get( $api_url, [
+        'timeout'    => 15,
+        'sslverify'  => ( $ssl_verify !== 'no' ),
+        'user-agent' => 'BotWriter/' . BOTWRITER_VERSION . ' WordPress Plugin',
+    ] );
+
+    if ( is_wp_error( $response ) ) {
+        return [ 'success' => false, 'error' => 'Failed to connect to WordPress site: ' . $response->get_error_message() ];
+    }
+
+    $http_code = wp_remote_retrieve_response_code( $response );
+    if ( $http_code !== 200 ) {
+        return [ 'success' => false, 'error' => "WordPress REST API returned HTTP {$http_code}." ];
+    }
+
+    $body       = wp_remote_retrieve_body( $response );
+    $categories = json_decode( $body, true );
+
+    if ( ! is_array( $categories ) || empty( $categories ) ) {
+        return [ 'success' => false, 'error' => 'No categories found or failed to parse response.' ];
+    }
+
+    $filtered = array_map( function ( $cat ) {
+        return [
+            'id'   => $cat['id']   ?? 0,
+            'name' => $cat['name'] ?? '',
+            'slug' => $cat['slug'] ?? '',
+        ];
+    }, $categories );
+
+    return [ 'success' => true, 'categories' => $filtered ];
+}
+
+
+/**
+ * Whether AI meta generation is enabled in SEO settings.
+ *
+ * Falls back to the legacy botwriter_meta_disabled option when the
+ * new setting has not been saved yet.
+ *
+ * @return bool
+ */
+function botwriter_is_seo_ai_meta_enabled() {
+    $value = get_option('botwriter_seo_ai_meta_enabled', '');
+    if ($value === '') {
+        return get_option('botwriter_meta_disabled', '0') !== '1';
+    }
+
+    return $value === '1';
+}
+
+/**
+ * Whether meta synchronization to SEO plugins is enabled.
+ *
+ * This is intentionally tied to AI meta generation so that, when
+ * "Generate SEO meta description with AI" is enabled, the generated
+ * description is always synchronized to excerpt + SEO plugin fields.
+ *
+ * @return bool
+ */
+function botwriter_is_seo_meta_sync_enabled() {
+    if (function_exists('botwriter_is_seo_ai_meta_enabled')) {
+        return botwriter_is_seo_ai_meta_enabled();
+    }
+
+    return get_option('botwriter_meta_disabled', '0') !== '1';
+}
+
+/**
+ * Generate an SEO meta description for a post using the configured AI text provider.
+ *
+ * Uses the same lightweight fast-model strategy as SEO Slug Translation.
+ * The result is a single sentence of ≤160 characters suitable for the
+ * <meta name="description"> tag.
+ *
+ * @param string $title   Post title.
+ * @param string $content Post HTML content (will be stripped to plain text).
+ * @param string $language_code  Post language code (e.g. 'es', 'en').
+ * @return string|false  The meta description, or false on failure.
+ */
+function botwriter_generate_seo_meta( $title, $content, $language_code = '' ) {
+    global $botwriter_languages;
+
+    // Feature disabled?
+    if ( ! function_exists( 'botwriter_is_seo_ai_meta_enabled' ) || ! botwriter_is_seo_ai_meta_enabled() ) {
+        return false;
+    }
+
+    // Strip HTML and trim content for the prompt (first ~800 chars is enough context)
+    $plain = wp_strip_all_tags( $content );
+    $plain = preg_replace( '/\s+/', ' ', $plain );
+    $plain = mb_substr( $plain, 0, 800 );
+
+    // Resolve language name
+    $lang_name = '';
+    if ( ! empty( $language_code ) && isset( $botwriter_languages[ $language_code ] ) ) {
+        $lang_name = $botwriter_languages[ $language_code ];
+    }
+
+    $prompt  = "You are an expert SEO copywriter.\n";
+    $prompt .= "Write a compelling meta description for the following blog post.\n";
+    $prompt .= "Rules:\n";
+    $prompt .= "- Exactly ONE sentence, maximum 155 characters.\n";
+    $prompt .= "- Must summarize the article accurately and entice clicks.\n";
+    $prompt .= "- Do NOT include the title verbatim.\n";
+    $prompt .= "- Do NOT use quotes or special characters.\n";
+    if ( ! empty( $lang_name ) ) {
+        $prompt .= "- The meta description language MUST be: {$lang_name}.\n";
+    }
+    $prompt .= "\nTitle: {$title}\n";
+    $prompt .= "Content excerpt: {$plain}\n\n";
+    $prompt .= "Respond ONLY with the meta description text, nothing else.";
+
+    // Determine provider
+    $provider = get_option( 'botwriter_text_provider', 'openai' );
+
+    $api_key = botwriter_get_provider_api_key( $provider );
+    if ( empty( $api_key ) ) {
+        botwriter_log( 'SEO Meta: No API key for provider ' . $provider, [], 'warning' );
+        return false;
+    }
+
+    $model      = botwriter_get_seo_translation_model( $provider ); // fast & cheap model
+
+    // Route through Cloudflare Worker (no usage count)
+    $text = botwriter_call_worker_nocount( $provider, $api_key, $model, $prompt, 5000, 0.4 );
+
+    if ( is_wp_error( $text ) ) {
+        botwriter_log( 'SEO Meta API error', [ 'provider' => $provider, 'error' => $text->get_error_message() ], 'error' );
+        return false;
+    }
+
+    $raw_text = (string) $text;
+    botwriter_log( 'SEO Meta raw response', [
+        'provider'                 => $provider,
+        'raw_length_bytes'         => strlen( $raw_text ),
+        'raw_length_chars'         => mb_strlen( $raw_text ),
+        'raw_response'             => $raw_text,
+        'contains_markdown_fence'  => strpos( $raw_text, '```' ) !== false,
+        'contains_html'            => preg_match( '/<[^>]+>/', $raw_text ) === 1,
+        'contains_html_entities'   => preg_match( '/&[A-Za-z0-9#]+;/', $raw_text ) === 1,
+    ] );
+
+    $meta = botwriter_sanitize_meta_description( $raw_text );
+
+    botwriter_log( 'SEO Meta sanitized response', [
+        'provider'            => $provider,
+        'sanitized_length'    => mb_strlen( $meta ),
+        'sanitized_response'  => $meta,
+        'was_modified'        => $meta !== trim( $raw_text, " \t\n\r\0\x0B\"'" ),
+    ] );
+
+    botwriter_log( 'SEO Meta generated', [
+        'provider' => $provider,
+        'length'   => mb_strlen( $meta ),
+    ] );
+
+    return $meta;
+}
+
+/**
+ * Clean and trim an AI-generated meta description so it is safe for SEO tags.
+ *
+ * @param string $text Raw AI output.
+ * @return string
+ */
+function botwriter_sanitize_meta_description( $text ) {
+    $text = wp_strip_all_tags( $text );
+    $text = trim( $text, " \t\n\r\0\x0B\"'" );
+    // Ensure ≤ 160 characters, cut at last word boundary
+    if ( mb_strlen( $text ) > 160 ) {
+        $text = mb_substr( $text, 0, 157 );
+        $text = preg_replace( '/\s+\S*$/', '', $text );
+        $text .= '...';
+    }
+    return $text;
+}
+
+/**
+ * Whether publish-time focus keyword generation is enabled.
+ *
+ * @return bool
+ */
+function botwriter_is_seo_publish_focus_keyword_enabled() {
+    return get_option( 'botwriter_seo_publish_focus_keyword_enabled', '0' ) === '1';
+}
+
+/**
+ * Sanitize an AI-generated focus keyword.
+ *
+ * @param string $text Raw keyword candidate.
+ * @return string
+ */
+function botwriter_sanitize_focus_keyword( $text ) {
+    $text = wp_strip_all_tags( (string) $text );
+    $text = preg_replace( '/\s+/', ' ', $text );
+    $text = trim( (string) $text, " \t\n\r\0\x0B,.;:!?\"'()[]{}" );
+
+    if ( $text === '' ) {
+        return '';
+    }
+
+    if ( function_exists( 'mb_substr' ) ) {
+        $text = mb_substr( $text, 0, 80, 'UTF-8' );
+    } else {
+        $text = substr( $text, 0, 80 );
+    }
+
+    return trim( $text );
+}
+
+/**
+ * Generate a primary SEO focus keyword using the configured AI text provider.
+ *
+ * @param string $title Post title.
+ * @param string $content Post HTML content.
+ * @param string $language_code Post language code (e.g. 'es', 'en').
+ * @return string|false
+ */
+function botwriter_generate_seo_focus_keyword( $title, $content, $language_code = '' ) {
+    global $botwriter_languages;
+
+    if ( ! function_exists( 'botwriter_is_seo_publish_focus_keyword_enabled' ) || ! botwriter_is_seo_publish_focus_keyword_enabled() ) {
+        return false;
+    }
+
+    $plain = wp_strip_all_tags( (string) $content );
+    $plain = preg_replace( '/\s+/', ' ', $plain );
+    if ( function_exists( 'mb_substr' ) ) {
+        $plain = mb_substr( (string) $plain, 0, 900, 'UTF-8' );
+    } else {
+        $plain = substr( (string) $plain, 0, 900 );
+    }
+
+    $lang_name = '';
+    if ( ! empty( $language_code ) && isset( $botwriter_languages[ $language_code ] ) ) {
+        $lang_name = (string) $botwriter_languages[ $language_code ];
+    }
+
+    $prompt  = "You are an SEO strategist.\n";
+    $prompt .= "Suggest exactly ONE primary focus keyword for the blog post below.\n";
+    $prompt .= "Rules:\n";
+    $prompt .= "- Return only the keyword phrase, no quotes, no markdown, no explanations.\n";
+    $prompt .= "- Use 1 to 4 words.\n";
+    $prompt .= "- Match the article language.\n";
+    $prompt .= "- Keep it natural and specific to search intent.\n";
+    if ( $lang_name !== '' ) {
+        $prompt .= "- Language must be: {$lang_name}.\n";
+    }
+    $prompt .= "\nTitle: {$title}\n";
+    $prompt .= "Content excerpt: {$plain}\n\n";
+    $prompt .= "Return only the focus keyword.";
+
+    $provider = get_option( 'botwriter_text_provider', 'openai' );
+    $api_key = botwriter_get_provider_api_key( $provider );
+    if ( empty( $api_key ) ) {
+        botwriter_log( 'SEO Focus keyword: No API key for provider ' . $provider, array(), 'warning' );
+        return false;
+    }
+
+    $model = botwriter_get_seo_translation_model( $provider );
+    $text = botwriter_call_worker_nocount( $provider, $api_key, $model, $prompt, 60, 0.4 );
+
+    if ( is_wp_error( $text ) ) {
+        botwriter_log( 'SEO Focus keyword API error', [
+            'provider' => $provider,
+            'error' => $text->get_error_message(),
+        ], 'error' );
+        return false;
+    }
+
+    $keyword = botwriter_sanitize_focus_keyword( (string) $text );
+    if ( $keyword === '' ) {
+        botwriter_log( 'SEO Focus keyword empty after sanitization', [
+            'provider' => $provider,
+            'raw_length' => strlen( (string) $text ),
+        ], 'warning' );
+        return false;
+    }
+
+    return $keyword;
+}
+
+/**
+ * Save focus keyword to BotWriter + compatible SEO plugin fields.
+ *
+ * @param int    $post_id Post ID.
+ * @param string $focus_keyword Focus keyword.
+ * @return void
+ */
+function botwriter_apply_seo_focus_keyword( $post_id, $focus_keyword ) {
+    if ( ! $post_id || $focus_keyword === '' ) {
+        return;
+    }
+
+    $focus_keyword = botwriter_sanitize_focus_keyword( $focus_keyword );
+    if ( $focus_keyword === '' ) {
+        return;
+    }
+
+    // Always persist native BotWriter focus key used by score checks.
+    update_post_meta( $post_id, '_botwriter_seo_primary_keyword', $focus_keyword );
+
+    if ( function_exists( 'botwriter_seo_set_meta' ) ) {
+        botwriter_seo_set_meta( $post_id, 'focus', $focus_keyword );
+    }
+
+    $yoast_available = defined( 'WPSEO_VERSION' )
+        || class_exists( 'WPSEO_Meta' )
+        || metadata_exists( 'post', $post_id, '_yoast_wpseo_focuskw' );
+    if ( $yoast_available ) {
+        update_post_meta( $post_id, '_yoast_wpseo_focuskw', $focus_keyword );
+        if ( class_exists( 'WPSEO_Meta' ) && is_callable( [ 'WPSEO_Meta', 'set_value' ] ) ) {
+            call_user_func( [ 'WPSEO_Meta', 'set_value' ], 'focuskw', $focus_keyword, $post_id );
+        }
+    }
+
+    if ( class_exists( 'RankMath' ) || metadata_exists( 'post', $post_id, 'rank_math_focus_keyword' ) ) {
+        update_post_meta( $post_id, 'rank_math_focus_keyword', $focus_keyword );
+    }
+
+    if ( function_exists( 'aioseo' ) || metadata_exists( 'post', $post_id, '_aioseop_keywords' ) ) {
+        update_post_meta( $post_id, '_aioseop_keywords', $focus_keyword );
+    }
+
+    if ( defined( 'SEOPRESS_VERSION' ) ) {
+        update_post_meta( $post_id, '_seopress_analysis_target_kw', $focus_keyword );
+    }
+
+    if ( function_exists( 'the_seo_framework' ) ) {
+        update_post_meta( $post_id, '_genesis_keywords', $focus_keyword );
+    }
+
+    botwriter_log( 'SEO Focus keyword applied to post', [
+        'post_id' => $post_id,
+        'length'  => function_exists( 'mb_strlen' ) ? mb_strlen( $focus_keyword ) : strlen( $focus_keyword ),
+        'plugins' => implode( ', ', array_filter( [
+            $yoast_available ? 'Yoast' : '',
+            class_exists( 'RankMath' ) ? 'RankMath' : '',
+            function_exists( 'aioseo' ) ? 'AIOSEO' : '',
+            defined( 'SEOPRESS_VERSION' ) ? 'SEOPress' : '',
+            function_exists( 'the_seo_framework' ) ? 'TSF' : '',
+        ] ) ) ?: 'none (native only)',
+    ] );
+}
+
+/**
+ * Save SEO meta description to the post's excerpt and to popular SEO plugin fields.
+ *
+ * Supports: Yoast SEO, Rank Math, All in One SEO, SEOPress, The SEO Framework.
+ *
+ * @param int    $post_id         The post ID.
+ * @param string $meta_description The meta description.
+ */
+function botwriter_apply_seo_meta( $post_id, $meta_description ) {
+    if ( empty( $meta_description ) || ! $post_id ) {
+        return;
+    }
+
+    if ( ! function_exists( 'botwriter_is_seo_meta_sync_enabled' ) || ! botwriter_is_seo_meta_sync_enabled() ) {
+        return;
+    }
+
+    // Always save as post excerpt (native WP)
+    wp_update_post( [
+        'ID'           => $post_id,
+        'post_excerpt' => $meta_description,
+    ] );
+
+    // Yoast SEO
+    $yoast_available = defined( 'WPSEO_VERSION' )
+        || class_exists( 'WPSEO_Meta' )
+        || metadata_exists( 'post', $post_id, '_yoast_wpseo_metadesc' );
+    if ( $yoast_available ) {
+        // Keep the canonical Yoast post meta key in sync.
+        update_post_meta( $post_id, '_yoast_wpseo_metadesc', $meta_description );
+
+        // Use Yoast API when available so Yoast internals pick up the value reliably.
+        if ( class_exists( 'WPSEO_Meta' ) && is_callable( [ 'WPSEO_Meta', 'set_value' ] ) ) {
+            call_user_func( [ 'WPSEO_Meta', 'set_value' ], 'metadesc', $meta_description, $post_id );
+        }
+    }
+
+    // Rank Math
+    if ( class_exists( 'RankMath' ) || metadata_exists( 'post', $post_id, 'rank_math_description' ) ) {
+        update_post_meta( $post_id, 'rank_math_description', $meta_description );
+    }
+
+    // All in One SEO (AIOSEO)
+    if ( function_exists( 'aioseo' ) ) {
+        global $wpdb;
+        $aioseo_table = $wpdb->prefix . 'aioseo_posts';
+        if ( $wpdb->get_var( "SHOW TABLES LIKE '{$aioseo_table}'" ) === $aioseo_table ) {
+            $exists = $wpdb->get_var( $wpdb->prepare(
+                "SELECT id FROM {$aioseo_table} WHERE post_id = %d", $post_id
+            ) );
+            if ( $exists ) {
+                $wpdb->update( $aioseo_table, [ 'description' => $meta_description ], [ 'post_id' => $post_id ] );
+            } else {
+                $wpdb->insert( $aioseo_table, [ 'post_id' => $post_id, 'description' => $meta_description ] );
+            }
+        }
+    }
+
+    // SEOPress
+    if ( defined( 'SEOPRESS_VERSION' ) ) {
+        update_post_meta( $post_id, '_seopress_titles_desc', $meta_description );
+    }
+
+    // The SEO Framework
+    if ( function_exists( 'the_seo_framework' ) ) {
+        update_post_meta( $post_id, '_genesis_description', $meta_description );
+    }
+
+    botwriter_log( 'SEO Meta applied to post', [
+        'post_id' => $post_id,
+        'length'  => mb_strlen( $meta_description ),
+        'plugins' => implode( ', ', array_filter( [
+            defined( 'WPSEO_VERSION' ) ? 'Yoast' : '',
+            class_exists( 'RankMath' ) ? 'RankMath' : '',
+            function_exists( 'aioseo' ) ? 'AIOSEO' : '',
+            defined( 'SEOPRESS_VERSION' ) ? 'SEOPress' : '',
+            function_exists( 'the_seo_framework' ) ? 'TSF' : '',
+        ] ) ) ?: 'none (excerpt only)',
+    ] );
+}
