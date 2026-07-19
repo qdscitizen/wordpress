@@ -1,0 +1,34 @@
+# Media uploads
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+
+# Config
+wp-config.php
+
+# Logs
+*.log
+error_log
+
+# Server config
+.htaccess
+web.config
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Node modules (too big, reinstall with npm)
+node_modules/
+
+# Composer vendor (too big, reinstall with composer)
+vendor/
+
+# GitHub workflows
+.github/
