@@ -1,5 +1,5 @@
 <?php
-require_once 'D:\xampp\htdocs\wordpress\wp-load.php';
+require_once '/mnt/d/xampp/htdocs/wordpress/wp-load.php';
 
 global $wpdb;
 
