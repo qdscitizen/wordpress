@@ -31,9 +31,13 @@ define( 'WPINC', 'wp-includes' );
  * @global string   $wp_local_package        Locale code of the package.
  */
 global $wp_version, $wp_db_version, $tinymce_version, $required_php_version, $required_php_extensions, $required_mysql_version, $wp_local_package;
+// 版本信息全局变量：$wp_version、$wp_db_version、$required_php_version 等
 require ABSPATH . WPINC . '/version.php';
+// UTF-8 字节扫描底层工具，utf8.php 依赖它定位非法编码
 require ABSPATH . WPINC . '/compat-utf8.php';
+// PHP 兼容层：运行环境缺函数时补纯 PHP 实现（mb_strlen、str_contains、array_is_list 等）
 require ABSPATH . WPINC . '/compat.php';
+// 基础函数库：环境判断、调试模式、计时、加载数据库与对象缓存的函数全在这里
 require ABSPATH . WPINC . '/load.php';
 
 // Check the server requirements.

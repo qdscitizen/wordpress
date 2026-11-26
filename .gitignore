@@ -36,3 +36,11 @@ vendor/
 # Local scratch
 .tmp-*.php
 remote-jobs/
+
+# Local debug scripts
+check-fs.php
+dump-product.php
+dump-products.php
+fs-clear.php
+quick-create-test.php
+test-strategy.php
